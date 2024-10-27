@@ -1,0 +1,16 @@
+1. Install PostgreSQL on Gitpod
+Run the following commands in the Gitpod terminal to install PostgreSQL:
+
+sudo apt update
+sudo apt install -y postgresql postgresql-contrib
+
+2. Start the PostgreSQL Service
+Start the PostgreSQL service to allow database operations:
+
+sudo service postgresql start
+
+3. Switch to the PostgreSQL User and Open the psql Prompt
+By default, PostgreSQL installs with a user named postgres. Switch to this user to create and manage your databases:
+
+sudo -i -u postgres
+psql
