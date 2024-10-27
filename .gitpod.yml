@@ -1,0 +1,11 @@
+
+
+
+# init:     Runs only once when the workspace is created, 
+#            which will initialize the PostgreSQL Docker container.
+# command:  Runs every time the workspace starts, 
+#           which will start the container if it exists (after stopping or a session pause).
+tasks:
+  - name: Start PostgreSQL Docker container
+    init: docker run --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=compliance_tracker -p 5432:5432 -d postgres
+    command: docker start postgres

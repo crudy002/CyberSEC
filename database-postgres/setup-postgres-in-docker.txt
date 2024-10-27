@@ -1,3 +1,4 @@
+Using Docker to Run PostgreSQL in Gitpod
 Start PostgreSQL with Docker Run the following command to set up PostgreSQL in a Docker container:
 
 docker run --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=compliance_tracker -p 5432:5432 -d postgres
@@ -8,3 +9,18 @@ Sets the POSTGRES_USER to postgres
 Sets the POSTGRES_PASSWORD to password (you can choose another if preferred)
 Names the database compliance_tracker
 Exposes it on port 5432
+
+Access PostgreSQL You can connect to this PostgreSQL instance directly from your Spring Boot application using the following connection string:
+
+jdbc:postgresql://localhost:5432/compliance_tracker
+
+Use:
+
+Username: postgres
+Password: password
+
+Verify Connection If you want to connect to the PostgreSQL instance from the Gitpod terminal, you can use the following command:
+
+docker exec -it postgres psql -U postgres -d compliance_tracker
+
+From here, you can continue with the steps to set up tables, or I can assist in configuring Spring Boot to connect to this Docker-based PostgreSQL instance.
