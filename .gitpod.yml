@@ -1,4 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
 
+ports:
+  - port: 8080  # Spring Boot app default port
+    onOpen: open-preview
+  - port: 5432  # PostgreSQL port
 
 
 # init:     Runs only once when the workspace is created, 
