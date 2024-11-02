@@ -5,6 +5,12 @@ CREATE TABLE control_families (
     name VARCHAR(100) NOT NULL
 );
 
+SELECT * FROM control_families;
+DELETE FROM control_families WHERE family_id = 'CA';
+DELETE FROM control_families WHERE family_id = 'CM';
+DELETE FROM control_families WHERE family_id = 'CP';
+TRUNCATE control_families;
+
 /*
 ALTER TABLE control_families
 DROP description;
