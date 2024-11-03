@@ -5,6 +5,16 @@ CREATE TABLE control_families (
     name VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE nist_controls (
+    control_id VARCHAR(10) PRIMARY KEY,
+    control_name VARCHAR(100) NOT NULL,
+    control_description TEXT,
+    discussion TEXT
+);
+
+ALTER TABLE nist_controls
+ALTER COLUMN control_name TYPE TEXT;
+
 SELECT * FROM control_families;
 DELETE FROM control_families WHERE family_id = 'CA';
 DELETE FROM control_families WHERE family_id = 'CM';
