@@ -12,6 +12,12 @@ CREATE TABLE nist_controls (
     discussion TEXT
 );
 
+CREATE TABLE related_controls (
+    control_id VARCHAR(10) REFERENCES nist_controls(control_id),
+    related_control_id VARCHAR(10) REFERENCES nist_controls(control_id),
+    PRIMARY KEY (control_id, related_control_id)
+);
+
 ALTER TABLE nist_controls
 ALTER COLUMN control_name TYPE TEXT;
 

@@ -46,6 +46,34 @@ with open('/workspace/CyberSEC/database-postgres/input/nist_controls.csv', 'r') 
             records_added += 1
             print(f"Added new record for control_id {control_id}.")
 
+
+# Parse out the related controls
+with open('/workspace/CyberSEC/database-postgres/input/nist_controls.csv', 'r') as f:
+    reader = csv.reader(f)
+    next(reader)  # Skip header row
+    # Parse out the related controls
+    related_controls = []
+    for row in reader:
+        control_id, control_name, control_description, discussion, related_controls_str = row
+
+        # Check if the related controls string is "None."
+        if related_controls_str == "None.":
+            related_controls_str = ""
+
+        # Parse the related controls string into a list of control IDs
+        related_controls_list = [control_id.strip().rstrip('.') for control_id in related_controls_str.split(', ') if control_id.strip()]
+
+        # Remove any leading or trailing whitespace from each control ID
+        related_controls_list = [control_id.strip() for control_id in related_controls_list]
+
+
+        # Create a list of tuples containing the control ID and related control ID
+        for related_control_id in related_controls_list:    
+            related_controls.append((control_id, related_control_id))
+
+# Write the related controls to the database
+cursor.executemany("INSERT INTO related_controls (control_id, related_control_id) VALUES (%s, %s)", related_controls)
+
 # Commit changes and close connection
 connection.commit()
 cursor.close()
